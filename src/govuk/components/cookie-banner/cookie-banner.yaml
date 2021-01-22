@@ -1,0 +1,108 @@
+params:
+- name: ariaLabel
+  type: string
+  required: false
+  description: Text for the aria-label which labels the cookie banner region. This region applies to all banners. Defaults to "Cookie banner".
+- name: banners
+  type: array
+  required: true
+  description: An array of banners
+  params:
+    - name: headingText
+      type: string
+      required: false
+      description: Heading text for the banner. Ignored if headingHtml is provided.
+    - name: headingHtml
+      type: string
+      required: false
+      description: Heading HTML for the banner. If this is provided, headingText is ignored.
+    - name: text
+      type: string
+      required: false
+      description: Text for the main content within the banner. Ignored if html is provided.
+    - name: html
+      type: string
+      required: false
+      description: Html for the main content within the banner. If this is provided, text is ignored.
+    - name: hidden
+      type: boolean
+      required: false
+      description: When `true`, the banner is hidden. Could be used for client-side implementations where the confirmation banner HTML is present in the DOM, but hidden. Defaults to false.
+    - name: autoFocus
+      type: boolean
+      required: false
+      description: When `true`, the banner is auto-focused. The `role='alert'` and `tabindex='-1'` attributes are applied to the banner. We advise setting this to `true` for confirmation banners. Defaults to false.
+    - name: classes
+      type: string
+      required: false
+      description: Additional classes for the banner
+    - name: attributes
+      type: object
+      required: false
+      description: Additional attributes for the banner
+    - name: actions
+      type: array
+      required: false
+      description: Button or links displayed in the banner
+      params:
+        - name: text
+          type: string
+          required: true
+          description: Button or link text
+        - name: href
+          type: string
+          required: false
+          description: If provided, action renders as a link. The href for the link.
+        - name: name
+          type: string
+          required: false
+          description: Name attribute for the button.
+        - name: value
+          type: string
+          required: false
+          description: Value attribute for the button.
+        - name: classes
+          type: string
+          required: false
+          description: Additional classes for the action.
+        - name: attributes
+          type: object
+          required: false
+          description: Additional attributes for the action
+
+examples:
+- name: default
+  data:
+    banners:
+      - headingText: "Cookies on service name"
+        text: "We use cookies on our service."
+        actions:
+          - text: Accept cookies
+            name: cookies
+            value: accept
+          - text: Reject cookies
+            name: cookies
+            value: reject
+          - text: View cookies and set preferences
+            href: /cookie-preferences
+
+- name: accepted
+  data:
+    banners:
+      - text: You have accepted cookies.
+        autoFocus: true
+        actions:
+          - text: Hide
+            attributes:
+              data-hide: true
+
+- name: rejected
+  data:
+    banners:
+      - text: You have rejected cookies.
+        autoFocus: true
+        actions:
+          - text: Hide
+            attributes:
+              data-hide: true
+

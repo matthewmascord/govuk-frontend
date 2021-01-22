@@ -1,0 +1,39 @@
+{% from "button/macro.njk" import govukButton %}
+
+<div class="govuk-cookie-banner" role="region" aria-label="{{ params.ariaLabel | default('Cookie banner') }}">
+  {% for banner in params.banners %}
+    <div
+      class="govuk-cookie-banner__banner {% if banner.classes %}{{ banner.classes }}{% endif %}"
+      {% if banner.hidden %}style="display:none"{% endif %}
+      {% if banner.autoFocus %}role="alert" tabindex="-1"{% endif %}
+      {%- for attribute, value in banner.attributes %} {{attribute}}="{{value}}"{% endfor %}>
+
+      <h2>{{banner.headingHtml or banner.headingText | safe }}</h2>
+
+      {% if banner.html %}
+        {{ banner.html | safe }}
+      {% elif banner.text %}
+        <p>{{ banner.text }}</p>
+      {% endif %}
+
+      {% for action in banner.actions %}
+        {% if action.text %}
+          {% if action.href %}
+            <a class="govuk-link {% if action.classes %}{{ action.classes }}{% endif %}"
+              href={{action.href}}
+              {%- for attribute, value in action.attributes %} {{attribute}}="{{value}}"{% endfor %}>{{action.text}}</a>
+          {% else %}
+            {{ govukButton({
+              text: action.text,
+              name: action.name,
+              value: action.value,
+              classes: action.classes,
+              attributes: action.attributes
+            }) }}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+    </div>
+  {% endfor %}
+</div>
