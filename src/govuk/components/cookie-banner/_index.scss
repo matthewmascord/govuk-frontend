@@ -1,6 +1,24 @@
 @include govuk-exports("govuk/component/cookie-banner") {
-  // For supporting older browsers which don't hide elements with the `hidden` attribute
-  .govuk-cookie-banner__message[hidden] {
+  .govuk-cookie-banner {
+    @include govuk-font($size: 19);
+
+    padding-top: govuk-spacing(4);
+
+    // The component does not set bottom spacing.
+    // The bottom spacing should be created by the items inside the component.
+    // Clear out internal bottoms margins on things, for instance those set by .govuk-button-group,
+    // so that they collapse instead of "leaking" outside the container.
+    @include govuk-clearfix;
+
+    // Visually separate the cookie banner from content underneath
+    // when user changes colours in their browser.
+    border-bottom: $govuk-focus-width solid transparent;
+
+    background-color: govuk-colour("light-grey", $legacy: "grey-3");
+  }
+
+  .govuk-cookie-banner__container[hidden] {
+    // Support older browsers which don't hide elements with the `hidden` attribute
     display: none;
   }
 }
