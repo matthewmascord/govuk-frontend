@@ -11,22 +11,26 @@
     {%- for attribute, value in banner.attributes %} {{attribute}}="{{value}}"{% endfor %}
     {% if banner.hidden %} hidden{% endif %}>
 
-      {% if banner.headingHtml or banner.headingText %}
-      <h2 class="govuk-cookie-banner__heading govuk-heading-m">
-        {%- if banner.headingHtml -%}
-          {{ banner.headingHtml | safe }}
-        {%- else -%}
-          {{ banner.headingText }}
-        {%- endif -%}
-      </h2>
-      {% endif %}
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          {% if banner.headingHtml or banner.headingText %}
+          <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+            {%- if banner.headingHtml -%}
+              {{ banner.headingHtml | safe }}
+            {%- else -%}
+              {{ banner.headingText }}
+            {%- endif -%}
+          </h2>
+          {% endif %}
 
-      <div class="govuk-cookie-banner__content">
-        {%- if banner.html -%}
-          {{ banner.html | safe }}
-        {%- elif banner.text -%}
-          <p class="govuk-body">{{ banner.text }}</p>
-        {%- endif -%}
+          <div class="govuk-cookie-banner__content">
+            {%- if banner.html -%}
+              {{ banner.html | safe }}
+            {%- elif banner.text -%}
+              <p class="govuk-body">{{ banner.text }}</p>
+            {%- endif -%}
+          </div>
+        </div>
       </div>
 
       {% if banner.actions %}
