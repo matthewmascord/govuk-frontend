@@ -17,7 +17,7 @@
     background-color: govuk-colour("light-grey", $legacy: "grey-3");
   }
 
-  .govuk-cookie-banner__container[hidden] {
+  .govuk-cookie-banner__message[hidden] {
     // Support older browsers which don't hide elements with the `hidden` attribute
     display: none;
   }
