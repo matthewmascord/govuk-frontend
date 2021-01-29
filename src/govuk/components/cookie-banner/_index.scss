@@ -2,6 +2,10 @@
   .govuk-cookie-banner {
     @include govuk-font($size: 19);
 
+    background-color: govuk-colour("light-grey", $legacy: "grey-3");
+  }
+
+  .govuk-cookie-banner__message {
     padding-top: govuk-spacing(4);
 
     // The component does not set bottom spacing.
@@ -13,8 +17,6 @@
     // Visually separate the cookie banner from content underneath
     // when user changes colours in their browser.
     border-bottom: $govuk-focus-width solid transparent;
-
-    background-color: govuk-colour("light-grey", $legacy: "grey-3");
   }
 
   .govuk-cookie-banner__message[hidden] {
