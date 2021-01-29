@@ -2,6 +2,10 @@
   .govuk-cookie-banner {
     @include govuk-font($size: 19);
 
+    // Visually separate the cookie banner from content underneath
+    // when user changes colours in their browser.
+    outline: 3px solid transparent;
+
     background-color: govuk-colour("light-grey", $legacy: "grey-3");
   }
 
@@ -13,10 +17,6 @@
     // Clear out internal bottoms margins on things, for instance those set by .govuk-button-group,
     // so that they collapse instead of "leaking" outside the container.
     @include govuk-clearfix;
-
-    // Visually separate the cookie banner from content underneath
-    // when user changes colours in their browser.
-    border-bottom: $govuk-focus-width solid transparent;
   }
 
   .govuk-cookie-banner[hidden] {
